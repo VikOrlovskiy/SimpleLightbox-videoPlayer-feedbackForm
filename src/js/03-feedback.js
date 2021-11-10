@@ -10,9 +10,7 @@ returnSevedMessage();
 // ------------------------------------------------
 function saveInputData(e) {
   feedbackFormState[e.target.name] = e.target.value;
-  if (localStorage) {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackFormState));
-  }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(feedbackFormState));
 }
 formREf.addEventListener('input', throttle(saveInputData, 500));
 // ------------------------------------------------
@@ -23,10 +21,10 @@ formREf.addEventListener('submit', function (e) {
   localStorage.removeItem(STORAGE_KEY);
 });
 function returnSevedMessage() {
-  let parstLocalStorage = localStorage.getItem(STORAGE_KEY);
+  let parstLocalStorage = JSON.parse(localStorage.getItem(STORAGE_KEY));
   if (parstLocalStorage) {
-    emailREf.value = JSON.parse(parstLocalStorage).email;
-    textREf.value = JSON.parse(parstLocalStorage).message;
+    emailREf.value = parstLocalStorage.email;
+    textREf.value = parstLocalStorage.message;
   }
   return;
 }
