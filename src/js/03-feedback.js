@@ -6,17 +6,15 @@ const textREf = formREf.querySelector('textarea');
 const STORAGE_KEY = 'feedback-form-state';
 let feedbackFormState = {};
 // ------------------------------------------------
+returnSevedMessage();
 function returnSevedMessage() {
   let parstLocalStorage = JSON.parse(localStorage.getItem(STORAGE_KEY));
   if (parstLocalStorage) {
     emailREf.value = parstLocalStorage.email;
     textREf.value = parstLocalStorage.message;
   }
-
-  // console.log(JSON.parse(localStorage.getItem(STORAGE_KEY)));
 }
-// returnSevedMessage();
-window.addEventListener('load', returnSevedMessage);
+// window.addEventListener('load', returnSevedMessage);
 // ------------------------------------------------
 function saveInputData(e) {
   feedbackFormState[e.target.name] = e.target.value;
